@@ -1,0 +1,34 @@
+<p>getcompoex works!</p>
+
+<button (click)="getData()"  *ngIf="!data">get</button>
+
+<div *ngIf="data">
+
+     <table>
+             <tr>
+                <th>Id</th>
+
+                <th>Name</th>
+
+                <th>Price</th>
+
+                     </tr>
+                     
+
+                    <tr *ngFor="let product of data">
+
+                    <td>   {{product.id}} </td>
+
+                    <td>   {{product.title}}</td>
+
+                    <td>   {{product.price}}</td>
+                    
+
+                    </tr>
+
+
+    </table>
+        
+   
+
+</div>

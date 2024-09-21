@@ -1,0 +1,499 @@
+<h1>HELLO WORLD</h1>
+
+<h1>{{title}}</h1>
+
+<h1>{{hello }}</h1> <!----it is one way data binding  means .tsfilehtml file to .html file-->
+
+<h1>{{hello |json |uppercase}}</h1>  <!---built in pipes-->
+
+<h1>{{hello |json |lowercase}}</h1><!---built in pipes-->
+
+<input placeholder="enter a name"><br><br>
+
+<input [placeholder]="value"><!---property binding with objects-->
+
+<img [src]="imagedetails.link" [width]="imagedetails.width" [height]="imagedetails.height" ><br><br><!---property binding with images-->
+
+<button on-click="onsubmit()">submit</button><br><br><!--event binding on submit perform the event-->
+<input [placeholder]="value" [(ngModel)]="inputvalue"><!--this is example of two way data binding-->
+<button on-click="Submit()">click</button>
+
+{{inputvalue}}
+
+
+
+<input placeholder="KEY UP EVENT" (keyup)="onkeyup($event)">
+<input placeholder="KEY DOWN EVENT"(keydown)="onkeydown($event)"><br><br>
+
+<input [placeholder]="placeholdervalue?placeholdervalue:'HELLO'"><br>
+<input type="number" placeholder="NUBER TYPE DATA"><br><br>
+
+<!--CLASS AND STYLE ARE ATTRIBUTE BINDINGS-->
+<!--class binding and style binding-->
+<h1 class="error">HELLO WORLDE</h1><!--error file from .css file here we directly assingned the class error to the class-->
+
+<h1 [class]="color?'sucess':'error'">HELLO WORLDS</h1><!--based upon the condtion we have to set the classes-->
+
+<h2 style="background-color: blue; text-align: center;"> HELLO WORLD</h2><!--here we directly provided the values-->
+
+
+<!---DYNAMIC STYLES WITH THE HELP OF STYLE BINDING-->
+
+<h2 [style]="stylesprops">HELLO WORLD</h2><!--here styleprops can assigned from the app.comoponent.ts file-->
+<h2 [style.color]=" 'red' ">HELLO WORLD</h2><!--here we directly assigned value+-->
+
+
+
+<!--Strucal Directives   -- are represented with the * symbol-->
+<!--ngIf and ngFor and ngSwitch-->
+<!-- it is simalr to the for loop in programming language -->
+
+<h1 *ngFor="let item of arrobj">
+    {{item}}
+</h1>
+
+
+
+
+<h1 *ngFor ="let i of objarray">
+    {{i.name}}
+    {{i.age}}
+</h1>
+
+
+<!--ngIf is simlar to the if conditon -->
+
+
+<h1 *ngFor ="let i of arrobj">
+    <div *ngIf="i===3 ">
+
+        {{i}}
+
+    </div>
+</h1>
+
+
+
+
+
+<h1 *ngFor="let i of objarray">
+
+    <div *ngIf="i.name==='vasu'">
+
+        {{i.name}}
+        {{i.place}}
+
+    </div>
+
+  </h1>
+
+
+
+  
+
+    <!--ngSwitch case -->
+
+    <div [ngSwitch]="checknumber">
+
+        <div *ngSwitchCase=10>THIS IS TEN</div>
+
+        <div *ngSwitchCase=20>THIS IS TWENTY</div>
+        
+        <div *ngSwitchCase=30>THIS IS THIRTY</div>
+
+    </div>
+
+
+
+    <div [ngSwitch]="checkname">
+
+        <div *ngSwitchCase=" 'vasu' ">HELLO VASU</div>
+
+        <div *ngSwitchCase=" 'bala '">HELLO BALA</div>
+        
+        <div *ngSwitchCase=" 'hello ' ">HELLO</div>
+
+    </div>
+
+
+
+
+    <!-- THIS IS SPECIAL CASE IF WE GIVE INPUT IS A EMPTY STRING THEN IT DOESNOT GO TO DEFAULT CASE IF NGSWICHCASE =0 PRESENT-->
+    
+    <div [ngSwitch]="specialcase">
+
+        <div *ngSwitchCase=" 'vasu' ">HELLO VASU</div>
+
+        <div *ngSwitchCase=" 'bala '">HELLO BALA</div>
+        
+        <div *ngSwitchCase=" 'hello ' ">HELLO</div>
+
+        <div *ngSwitchCase=" 0 ">THIS IS ZERO</div>
+
+        <div *ngSwitchDefault>This is default</div>
+
+    </div>
+
+
+        <br>
+     <br>
+
+<!--CLASS BINDING WE CAN DIRECTLY ASSIGIN THE CLASS TO THE ngClassDirective-->
+
+    <div [ngClass]=" 'sucess' ">YOUTUBE</div>
+
+    <br>
+    <br>
+<!--HERE WE ASSING A CLASS TO THE classbinding varible that class varible directly asssign to the ngclass -->
+    <div [ngClass]="classbinding">WHATSUP</div>
+
+
+    <!--HERE WE CAN ASSIGN THE CLASS BASED UPON THE CONDITION-->
+
+    <div [ngClass]="checkvalue === 'vasu'?'sucess':'error'">HELLO HOW ARE YOU</div>
+
+
+    <!--ngStyle BINDING-->
+
+    <div [ngStyle]=" styles ">HELLO</div>
+
+    <div [ngStyle]="{'color':'red','background-color':'black','padding':'60px','text-size':'80p'} ">NG STYLING</div>
+
+
+
+
+    <!--component sharing @input,@output-->
+    <!--HERE TITLE COME FROM APP.COMPONENT.TS  HERE IT IS ASSIGNED TO INPUTDATA HERE INPUTDATA IS VARIBLE WHICH IS DEFIEND IN THE DATASHARE COMPONENT -->
+<!--COMPONENT FLOW--> 
+<!--APP.COMPONETN.TS =>APP.COMPONENT.HTML=>CHILDCOMPONENT(DATASHARECOMPONENT)=>EXECUTES THE CODE -->
+    <app-datashare [inputdata]=" TITLE "> </app-datashare>
+
+<!--PARENT TO CHILD HERE @Input decrotor is used-->
+    <app-datashare1 [inputdata1]="TITLE1"> </app-datashare1>
+
+    <!--CHILD TO PARENT here  @Output decorator is used-->
+    <app-childcomp (childData)="Otherdata=$event"></app-childcomp>
+    <button class="btn btn-secondary" (click)="checkdata()">Check data </button>
+
+   
+
+    <!--COMPONENT SHARING BY USING SERVICEE FILES-->
+    <!--HERE WE CONNECTING APP.COMPONENT.HTML AND SERVICE-EX-COMPO FILE BY USING SERVICE FILES-->
+    <!--BY USING SERVICES FILES WE CONNECTIG THE COMPONENTS VERY EASY MANNER-->
+    <!--PROCESS-->
+    <!--FIRST IMPORT THE SERVICES IN THE BOTH COMPONENTS-->
+    <!--AND INJECTS THE SERVICES  FILES IN BOTH CONSTRUCTORS -->
+    <app-service-ex-compo> </app-service-ex-compo>
+    <button class="btn btn-primary" on-click="submitted()">submitted</button>
+
+    <br>
+    <hr>
+
+    <!--BUILT -IN PIPES-->
+    
+    <div>
+        {{pipes_name}}
+    </div>
+
+            <div>
+                {{pipes_name | uppercase}}
+            </div>
+
+                    <div>
+                        {{pipes_name | lowercase}}
+                    </div>
+
+                            <div>
+                                {{listData}}
+
+                            </div>
+
+                    <div>
+                        {{listData|json}} <!--json is built in pipe which is used for objects-->
+
+                    </div>
+
+            <div>
+                {{todaysDate}}
+
+            </div>
+
+    <div>
+        {{todaysDate | date}}
+
+    </div>
+
+<div>
+    {{todaysDate | date:'short'}}
+
+</div>
+
+        <div>
+            {{todaysDate | date:'full'}}
+
+        </div>
+
+                <div>
+                    {{todaysDate | date:'medium'}}
+
+                </div>
+
+                        <div>
+                            {{todaysDate | date:'shortDate'}}
+
+                        </div>
+
+        <div>
+            {{todaysDate | date:'fullDate'}}
+
+        </div>
+
+
+    <p>{{ 0.1234 | percent }}</p>
+
+
+<p>{{ 1234.56 | currency }}</p>
+
+<P>{{234 |currency:'INR'}}</P>
+
+<hr>
+
+<!--CUSTOM  PIPES CONCEPTS-->
+
+        <div>
+            {{todaysDate | custom }}
+
+        </div>     
+        
+        
+
+        <!-- I ADDED SMALL DATA INSIDE THE PIPE(CUSTOMPIPES)-->
+        <div>
+            {{pipesvarible | custompipes }}
+
+        </div>  
+
+<!-- BASED UPON THE CONDITON PIPES WILL BE GET EXECUTED-->
+
+        <div>
+            {{variblename | conditionbasedpipesexample :variblegender}}
+
+        </div>  
+
+
+
+  <!--                               
+        
+        
+        
+        
+What Are Pipes?
+Pipes are a feature in Angular that lets you transform data in your templates. They can take in data as input and transform it before displaying it in the view.
+PIPES ALSO CALLED AS FILTERS IN ANGULAR VERSION1
+
+How Do You Use Pipes?
+You use pipes in Angular templates with the pipe operator |. For example:
+
+html
+Copy code
+<p>{{ someValue | somePipe }}</p>
+This will apply somePipe to someValue and display the transformed result.
+
+Built-In Pipes
+Angular comes with several built-in pipes, such as:
+
+DatePipe: Formats dates.
+html
+Copy code
+<p>{{ today | date }}</p>
+
+UpperCasePipe: Converts a string to uppercase.
+html
+Copy code
+<p>{{ 'hello' | uppercase }}</p>
+
+LowerCasePipe: Converts a string to lowercase.
+html
+Copy code
+<p>{{ 'HELLO' | lowercase }}</p>
+CurrencyPipe: Formats a number as currency.
+html
+Copy code
+<p>{{ 1234.56 | currency }}</p>
+PercentPipe: Formats a number as a percentage.
+html
+Copy code
+<p>{{ 0.1234 | percent }}</p>
+Custom Pipes
+You can also create your own pipes. Here's a simple example of a custom pipe that capitalizes the first letter of a string:
+
+typescript
+Copy code
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'capitalize'
+})
+export class CapitalizePipe implements PipeTransform {
+  transform(value: string): string {
+    if (!value) return value;
+    return value.charAt(0).toUpperCase() + value.slice(1);
+  }
+}
+Then you can use this custom pipe in your template like this:
+
+html
+Copy code
+<p>{{ 'hello' | capitalize }}</p>
+Pure vs. Impure Pipes
+Pure Pipes: These pipes are only re-evaluated when their input values change. They are efficient and are the default type of pipe.
+Impure Pipes: These pipes are re-evaluated on every change detection cycle, regardless of changes to input values. They can be useful for more dynamic or complex transformations but are less efficient.
+To mark a pipe as impure, set the pure property to false in the pipe decorator:
+
+typescript
+Copy code
+@Pipe({
+  name: 'impureExample',
+  pure: false
+})
+  
+Summary
+Pipes in Angular are a simple way to transform data directly in your templates. 
+They are easy to use and can greatly simplify your code by handling data transformations declaratively.
+ Use built-in pipes for common transformations, and create custom pipes for specific needs.
+  Remember to use pure pipes for most cases to keep your app efficient.
+        
+        
+        -->
+<!--DEPENDCY INJECTION-->
+<!--HERE I CONNECTED  THE DATA.SERVICE FILE AND DI COMPONENT -->
+<!--THAT SERVICE FILE INJECTED IN DI COMPONENT THIS DI COMPONENT CALLED IN APP.COMPONENT.HTML FILE -->
+
+    <app-di-componentex></app-di-componentex>
+        
+        
+<app-excompo></app-excompo>
+
+<!--TEMPLATE REFERNCE VARBILE EXAMPLE-->
+
+<h2  #test > Template refernce varible Example</h2> <!--HERE WE GIVE TEMPLATE REFRENCE VARIBLE TO THE SUB ELEMENT-->
+
+<h1>{{test}}</h1>
+
+ <!--<app-excompo #refernce></app-excompo>--> <!--HERE WE GIVE TEMPLATE REFERNCE VARIBLE TO THE COMPONTENT TO IDENTIFY THE WHOLE COMPONENT-->
+
+
+ <app-excompo #compo></app-excompo> <!-- here we give the template refernce varible to  the component we can access  the varible and methds  inside that components -->
+  
+ <h1>{{ compo.data}}</h1>
+
+  <h1>{{compo.demo()}}</h1>      
+
+
+
+
+
+ <!--HERE WE USING THE @ VIECHILD DECORATOR CONCEPT CHILD HERE CHILD COMP IS EXCOMPO  PARENT COMPO IS APP.COMOPONENT-->
+
+ <!-- FIRST WE IMPORT @VIECHILD DECORATOR  INSIDE THE PARENT COMPO NEXT WE IMPORT CHILD CLASS COMPO  -->
+  <!-- SYNTAX-->
+   <!-- @ViewChild (class name of the child) refernce varible -->
+
+   <!-- BY USING THIS VIEW CHILD DECORATOR WE CAN ACCESS THE CHILD CLASS  COMPONENT VARIBLES AND METHODS WE CAN ACESS OR WE CAN ACCESS THE ELEMENTS OF THE  SAME COMPONENT   -->
+
+
+  <app-excompo ></app-excompo>
+
+
+  <button (click)="submit()">submit123</button>
+
+  
+
+  <!--HERE WE USE THE @Viewchild  for same component to acess the same element--> 
+
+  <div #ref> THIS IS EXAMPLE OF ACESSING THE ELEMENTS OF THE SAME COMPONENT WITH THE HELP OF THE @VIECHILD DECORATOR</div>
+
+ <button (click)="changeing()">changingFunctionality of div</button>
+
+<!------>
+
+<!--Differnce BETWEEN @ViewChild and @ViewChildren concept-->
+<!--concpt will be writeen in app.comoponent.ts file-->
+<!-- @view child stops the searching when ever the template reference varible is once found-->
+ <!--@view children doesn't stops the searching until the that template varible chekcs the whole page-->
+ 
+<p #para>THIS IS PARA1</p>
+
+<p #para>THIS IS PARA2</p>
+
+
+<h1 #heading>THIS IS HEADING 1</h1>
+<h1 #heading>THIS IS HEADING 2</h1>
+<h2 #heading>THIS IS HEADING 3</h2>
+
+<button (click)="test1()">click</button>
+
+
+<hr>
+
+<!--ROUTERS-CONCEPT-->
+
+<!-- 
+FIRST IMPORT THE MODUELS
+1.import { RouterModule,Routes } from '@angular/router';
+
+2.import the below code in imports module
+RouterModule.forRoot(vasu/NAME OF THE ARRAY)
+3.define the array with paths 
+
+
+
+const vasu:Routes=[
+
+
+  {
+    path:'',component:HomeComponent
+  },
+
+  {
+    }
+  ]
+
+  4.WRITE THE BELOW TAG IN APP.COMPONENT.HTML
+
+  <router-outlet> </router-outlet>
+
+  ROUTING CONNECTION DONE
+
+-->
+
+<h1>ROUTING CONCEPT</h1>
+
+<app-main-header></app-main-header> <!--CREATING TH LINKS FOR THE TAKEN VARIBLES-->
+  
+<router-outlet> </router-outlet>
+
+
+<app-getcompoex></app-getcompoex>
+
+
+
+<!--OBSERVABLE CONCEPT -->
+
+<!--OBSERVABLE IS A CLASS  
+SYNTATX: let obj=new observable()
+TO CREATE OBJ OF THIS TYPE TAKES A CALLBACK FUNCTION &
+        let o=new observable(function(){})
+        
+        THIS OBJ EMITS SOME DATA CONTINOUSLY OR ERROR WITH THE HELP OF next(),error() methods.
+-->
+<app-observablecompo></app-observablecompo>
+
+<hr>
+
+
+
+<div class="container">
+    <app-todoform></app-todoform>
+        <app-todolist></app-todolist>
+</div>
