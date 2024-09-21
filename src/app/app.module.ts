@@ -29,6 +29,7 @@ import { ObservablecompoComponent } from './observablecompo/observablecompo.comp
 import { TodoformComponent } from './todoform/todoform.component';
 import { TodolistComponent } from './todolist/todolist.component';
 import { TodoService } from './todo.service';
+import { HiComponent } from './components/hi/hi.component';
 
 const vasu:Routes=[
 
@@ -86,7 +87,8 @@ NOTE2:
     GetcompoexComponent,
     ObservablecompoComponent,
     TodoformComponent,
-    TodolistComponent
+    TodolistComponent,
+    HiComponent
   ],
   imports: [
     BrowserModule,
